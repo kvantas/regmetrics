@@ -7,12 +7,23 @@
 rss(observed, predicted)
 }
 \arguments{
-\item{observed}{ground truth number or vector}
+\item{observed}{observed  numeric vector.}
 
-\item{predicted}{predicted number or vector}
+\item{predicted}{predicted numeric vector.}
+}
+\value{
+A numeric vector of length one.
 }
 \description{
-It is defined as the sum of the squares of residuals, deviations predicted
- from actual empirical values of data. It is a measure of the discrepancy
- between the data and an estimation model
+\code{rss} returns the sum of the squares of residuals, deviations predicted
+ from actual empirical values of data.
+}
+\details{
+\deqn{RSS = \sum_{i=1}^n{y_i - \hat {y_i}}}
+where \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
+}
+\examples{
+ y_obs  <- c(3.0, -0.5, 2.0, 5.0)
+ y_pred <- c(3.1, -0.4, 1.8, 4.5)
+ rss(y_obs, y_pred)
 }

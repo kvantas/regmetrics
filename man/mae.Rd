@@ -7,12 +7,26 @@
 mae(observed, predicted)
 }
 \arguments{
-\item{observed}{ground truth number or vector}
+\item{observed}{observed  numeric vector.}
 
-\item{predicted}{predicted number or vector}
+\item{predicted}{predicted numeric vector.}
+}
+\value{
+A numeric vector of length one. A number in \eqn{[0, +\infty)} if
+\code{observed} and  \code{predicted} are numeric vectors without NA values
+with the same length. Otherwise the output will be \code{NA}.
 }
 \description{
-Mean absolute error is a risk metric
-corresponding to the expected value of the absolute error loss or l1-norm
-loss.
+\code{mae} returns the the average of absolute errors between values
+predicted by a model and the values actually observed. It corresponds to the
+expected value of the absolute error loss or l1-norm loss.
+}
+\details{
+\deqn{MAE = \frac{1}{n}\sum_{i=1}^n|y_i- \hat{y_i}|}
+where  \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
+}
+\examples{
+ y_obs  <- c(3.0, -0.5, 2.0, 5.0)
+ y_pred <- c(3.9, -0.2, 2.8, 4.5)
+ mae(y_obs, y_pred)
 }

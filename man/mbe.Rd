@@ -7,14 +7,27 @@
 mbe(observed, predicted)
 }
 \arguments{
-\item{observed}{ground truth number or vector}
+\item{observed}{observed  numeric vector.}
 
-\item{predicted}{predicted number or vector
-
-It describes the direction of the error bias. Its value, however, is related
-to magnitude of values under investigation. A negative MBE occurs when
-predictions are smaller in value than observations.}
+\item{predicted}{predicted numeric vector.}
+}
+\value{
+A numeric vector of length one. A number in
+\eqn{(-\infty), +\infty)} if \code{observed} and  \code{predicted} are
+numeric vectors without NA values with the same length. Otherwise the output
+will be \code{NA}.
 }
 \description{
-Mean bias error
+\code{mde} returns the direction of the error bias. Its value is related
+to the magnitude of values under investigation. A negative MBE occurs when
+predictions are smaller in value than observations.
+}
+\details{
+\deqn{MBE = \frac{1}{n} \sum_{i=1}^n(y_i- \hat{y_i})}
+where  \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
+}
+\examples{
+ y_obs  <- c(3.0, -0.5, 2.0, 5.0)
+ y_pred <- c(3.9, -0.2, 2.8, 4.5)
+ mbe(y_obs, y_pred)
 }

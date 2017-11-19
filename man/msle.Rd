@@ -7,11 +7,25 @@
 msle(observed, predicted)
 }
 \arguments{
-\item{observed}{ground truth number or vector}
+\item{observed}{observed  numeric vector.}
 
-\item{predicted}{predicted number or vector}
+\item{predicted}{predicted numeric vector.}
+}
+\value{
+A numeric vector of length one. A number in \eqn{[0, +\infty)} if
+\code{observed} and  \code{predicted} are numeric vectors without NA values
+with the same length. Otherwise the output will be \code{NA}.
 }
 \description{
-It provides a risk metric corresponding to
+\code{msle} returns the the average of absolute errors corresponding to
 the expected value of the squared logarithmic (quadratic) error or loss.
+}
+\details{
+\deqn{MSLE = \frac{1}{n} \sum_{i=1}^{n} (\log_e (1 + y_i) - \log_e (1 + \hat{y}_i) )^2}
+where  \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
+}
+\examples{
+ y_obs  <- c(3.0, -0.5, 2.0, 5.0)
+ y_pred <- c(3.9, -0.2, 2.8, 4.5)
+ msle(y_obs, y_pred)
 }

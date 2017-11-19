@@ -7,17 +7,20 @@
 tss(observed)
 }
 \arguments{
-\item{observed}{ground truth numeric vector}
+\item{observed}{observed  numeric vector.}
 }
 \value{
-If all observations are numeric, then the output will be a number.
-Otherwise the output will be an integer
+A numeric vector of length one.
 }
 \description{
 \code{tss} returns the sum, over all observations, of the squared differences
-of each observation from the overall mean
-\url{https://en.wikipedia.org/wiki/Total_sum_of_squares}.
+of each observation from the overall mean.
 }
 \details{
 \deqn{TSS = \sum _{i=1}^n {(y_i - \bar y)^2}}
+where \eqn{ \bar{y} } is the overal mean
+}
+\examples{
+ y_obs <- c(3, -0.5, 2, 5)
+ tss(y_obs)
 }
