@@ -1,31 +1,13 @@
-
-
-#' Compute the total sum of squares
-#'
-#' \code{tss} returns the sum, over all observations, of the squared differences
-#' of each observation from the overall mean.
-#'
-#' \deqn{TSS = \sum _{i=1}^n {(y_i - \bar y)^2}}
-#' where \eqn{ \bar{y} } is the overal mean
-#'
-#' @param observed  observed  numeric vector.
-#'
-#' @return  A numeric vector of length one.
-#'
-#' @export
-#'
-#' @examples
-#'  y_obs <- c(3, -0.5, 2, 5)
-#'  tss(y_obs)
-tss <- function(observed) {
-    sum((observed - mean(observed)) ^ 2)
+# Compute the total sum of squares
+TSS <- function(observed) {
+    sum((observed - mean(observed))^2)
 }
 
 
 #' Compute the residual sum of squares
 #'
-#' \code{rss} returns the sum of the squares of residuals, deviations predicted
-#'  from actual empirical values of data.
+#' \code{RSS} returns the sum of the squares of residuals, deviations predicted
+#'  from observed values of data.
 #'
 #' \deqn{RSS = \sum_{i=1}^n{y_i - \hat {y_i}}}
 #' where \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
@@ -40,9 +22,9 @@ tss <- function(observed) {
 #' @examples
 #'  y_obs  <- c(3.0, -0.5, 2.0, 5.0)
 #'  y_pred <- c(3.1, -0.4, 1.8, 4.5)
-#'  rss(y_obs, y_pred)
-rss <- function(observed, predicted) {
-    sum((observed - predicted) ^ 2)
+#'  RSS(y_obs, y_pred)
+RSS <- function(observed, predicted) {
+    sum((observed - predicted)^2)
 }
 
 
@@ -62,7 +44,7 @@ rss <- function(observed, predicted) {
 #' and \eqn{\bar y} is the overal mean and \eqn{\hat {y_i}} is the predicted
 #' value of \eqn{y_i}.
 #'
-#' @inheritParams rss
+#' @inheritParams RSS
 #'
 #' @return A numeric vector of length one. A number in \eqn{(-\infty ,1]} if
 #' \code{observed} and \code{predicted} are numeric vectors without NA values
@@ -77,7 +59,7 @@ rss <- function(observed, predicted) {
 
 r2 <- function(observed, predicted) {
     if (check_vectors(observed, predicted)) {
-        return(1 - rss(observed, predicted) / tss(observed))
+        return(1 - RSS(observed, predicted)/TSS(observed))
     } else {
         return(NA)
     }
@@ -90,7 +72,7 @@ r2 <- function(observed, predicted) {
 #' predicted by the model. The Explained variance best possible score is 1.0,
 #' lower values are worse.
 #'
-#' @inheritParams rss
+#' @inheritParams RSS
 #'
 #' @return A numeric vector of length one. A number in \eqn{(-\infty ,1]} if
 #' \code{observed} and \code{predicted} are numeric vectors without NA values,
@@ -109,7 +91,7 @@ r2 <- function(observed, predicted) {
 #' expl_var(y_obs, y_pred)
 expl_var <- function(observed, predicted) {
     if (check_vectors(observed, predicted)) {
-        return(1 - var(observed - predicted) / var(observed))
+        return(1 - var(observed - predicted)/var(observed))
     } else {
         return(NA)
     }
@@ -125,7 +107,7 @@ expl_var <- function(observed, predicted) {
 #' \deqn{RMSE = \sqrt {\frac{1}{n}\sum_{i=1}^n(y_i- \hat{y_i})^2}}
 #' where  \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
 #'
-#' @inheritParams rss
+#' @inheritParams RSS
 #'
 #' @return A numeric vector of length one. A number in \eqn{[0, +\infty)} if
 #' \code{observed} and  \code{predicted} are numeric vectors without NA values
@@ -139,9 +121,7 @@ expl_var <- function(observed, predicted) {
 
 rmse <- function(observed, predicted) {
     if (check_vectors(observed, predicted)) {
-        return(sqrt(mean(rss(
-            observed, predicted
-        ))))
+        return(sqrt(mean(RSS(observed, predicted))))
     } else {
         return(NA)
     }
@@ -158,7 +138,7 @@ rmse <- function(observed, predicted) {
 #' \deqn{MAE = \frac{1}{n}\sum_{i=1}^n|y_i- \hat{y_i}|}
 #' where  \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
 #'
-#' @inheritParams rss
+#' @inheritParams RSS
 #'
 #' @return A numeric vector of length one. A number in \eqn{[0, +\infty)} if
 #' \code{observed} and  \code{predicted} are numeric vectors without NA values
@@ -186,10 +166,11 @@ mae <- function(observed, predicted) {
 #' \code{msle} returns the the average of absolute errors corresponding to
 #' the expected value of the squared logarithmic (quadratic) error or loss.
 #'
-#' \deqn{MSLE = \frac{1}{n} \sum_{i=1}^{n} (\log_e (1 + y_i) - \log_e (1 + \hat{y}_i) )^2}
+#' \deqn{MSLE = \frac{1}{n} \sum_{i=1}^{n} (\log_e (1 + y_i) -
+#'       \log_e (1 + \hat{y}_i) )^2}
 #' where  \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
 #'
-#' @inheritParams rss
+#' @inheritParams RSS
 #'
 #' @return A numeric vector of length one. A number in \eqn{[0, +\infty)} if
 #' \code{observed} and  \code{predicted} are numeric vectors without NA values
@@ -204,7 +185,7 @@ mae <- function(observed, predicted) {
 msle <- function(observed, predicted) {
     if (check_vectors(observed, predicted)) {
         logdiff <- log(1 + observed) - log(1 + predicted)
-        return(mean(sum(logdiff) ^ 2))
+        return(mean(sum(logdiff)^2))
     } else {
         return(NA)
     }
@@ -221,7 +202,7 @@ msle <- function(observed, predicted) {
 #' \deqn{MBE = \frac{1}{n} \sum_{i=1}^n(y_i- \hat{y_i})}
 #' where  \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
 #'
-#' @inheritParams rss
+#' @inheritParams RSS
 #'
 #' @return A numeric vector of length one. A number in
 #' \eqn{(-\infty), +\infty)} if \code{observed} and  \code{predicted} are
@@ -236,26 +217,24 @@ msle <- function(observed, predicted) {
 
 mbe <- function(observed, predicted) {
     if (check_vectors(observed, predicted)) {
-        logdiff <- log(1 + observed) - log(1 + predicted)
-        return(mean(observed - predicted))
+        return(mean(predicted - observed))
     } else {
         return(NA)
     }
-
+    
 }
 
 
 
-#' Normalized mean squared error
+#' Normalized squared error
 #'
-#' \code{nmse} returns the normalized mean squared error
+#' \code{nse} returns the normalized mean squared error
 #' between values predicted by a model and the values actually observed.
 #'
-#' \deqn{ NMSE = \frac{MSE(y_{i}, \hat {y_i})}{MSE(y_{i}, 0)}}
+#' \deqn{ NSE = \frac{MSE(y_{i}, \hat {y_i})}{MSE(y_{i}, 0)}}
 #' where  \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
-
 #'
-#' @inheritParams rss
+#' @inheritParams RSS
 #'
 #' @return A numeric vector of length one. A number in \eqn{[0, +\infty)} if
 #' \code{observed} and  \code{predicted} are numeric vectors without NA values
@@ -266,12 +245,72 @@ mbe <- function(observed, predicted) {
 #' @examples
 #'  y_obs  <- c(3.0, -0.5, 2.0, 5.0)
 #'  y_pred <- c(3.9, -0.2, 2.8, 4.5)
-#'  nmse(y_obs, y_pred)
-nmse <- function(observed, predicted) {
+#'  nse(y_obs, y_pred)
+nse <- function(observed, predicted) {
     if (check_vectors(observed, predicted)) {
-        return(rss(observed, predicted) / rss(observed, 0))
+        return(RSS(observed, predicted)/RSS(observed, 0))
     } else {
         return(NA)
     }
+    
+}
 
+#' Normalized absolute error
+#'
+#' \code{nae} returns the normalized  absolute error
+#' between values predicted by a model and the values actually observed.
+#'
+#' \deqn{ NAE = \frac{MAE(y_{i}, \hat {y_i})}{MAE(y_{i}, 0)}}
+#' where  \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
+
+#'
+#' @inheritParams RSS
+#'
+#' @return A numeric vector of length one. A number in \eqn{[0, +\infty)} if
+#' \code{observed} and  \code{predicted} are numeric vectors without NA values
+#' with the same length. Otherwise the output will be \code{NA}.
+#'
+#' @export
+#'
+#' @examples
+#'  y_obs  <- c(3.0, -0.5, 2.0, 5.0)
+#'  y_pred <- c(3.9, -0.2, 2.8, 4.5)
+#'  nae(y_obs, y_pred)
+nae <- function(observed, predicted) {
+    if (check_vectors(observed, predicted)) {
+        return(RSS(observed, predicted)/RSS(observed, 0))
+    } else {
+        return(NA)
+    }
+    
+}
+
+#' Normalized bias error
+#'
+#' \code{nbe} returns the normalized mean absoluye error
+#' between values predicted by a model and the values actually observed.
+#'
+#' \deqn{ NAE = \frac{MBE(y_{i}, \hat {y_i})}{MBE(y_{i}, 0)}}
+#' where  \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
+# 
+#'
+#' @inheritParams RSS
+#'
+#' @return A numeric vector of length one. A number in \eqn{[0, +\infty)} if
+#' \code{observed} and  \code{predicted} are numeric vectors without NA values
+#' with the same length. Otherwise the output will be \code{NA}.
+#'
+#' @export
+#'
+#' @examples
+#'  y_obs  <- c(3.0, -0.5, 2.0, 5.0)
+#'  y_pred <- c(3.9, -0.2, 2.8, 4.5)
+#'  nbe(y_obs, y_pred)
+nbe <- function(observed, predicted) {
+    if (check_vectors(observed, predicted)) {
+        return(sum(observed - predicted)/sum(observed))
+    } else {
+        return(NA)
+    }
+    
 }

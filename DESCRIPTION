@@ -1,6 +1,6 @@
 Package: regmetrics
 Title: Regression Metrics and Plots
-Version: 0.0.0.900
+Version: 0.0.1.900
 Authors@R: person("Konstantinos", "Vantas", email = "kon.vantas@gmail.com",
                   role = c("aut", "cre"))
 Description: Collection of regression metrics for measuring performance in 
