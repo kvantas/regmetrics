@@ -21,23 +21,20 @@
 #'  plotPO(y_obs, y_pred)
 
 plotPO <- function(observed, predicted) {
-
-    if (!check_vectors(observed, predicted))
+    
+    if (!check_vectors(observed, predicted)) 
         return(NULL)
-
-    data <- data.frame('observed' = observed, 'predicted' = predicted)
-
+    
+    data <- data.frame(observed = observed, predicted = predicted)
+    
     minVal <- min(c(data$observed, data$predicted))
     maxVal <- max(c(data$observed, data$predicted))
-
-
-    g1 <- ggplot2::ggplot() +
-        ggplot2::geom_point(ggplot2::aes(x = predicted, y = observed)) +
-        ggplot2::geom_abline(intercept = 0, slope = 1, col = "grey8", linetype = 5) +
-        ggplot2::labs(x = "predicted", y = "observed") +
-        ggplot2::xlim(minVal, maxVal) + ggplot2::ylim(minVal, maxVal) +
-        ggplot2::theme_bw()
-
+    
+    
+    g1 <- ggplot2::ggplot() + ggplot2::geom_point(ggplot2::aes(x = predicted, y = observed)) + ggplot2::geom_abline(intercept = 0, 
+        slope = 1, col = "grey8", linetype = 5) + ggplot2::labs(x = "predicted", y = "observed") + ggplot2::xlim(minVal, 
+        maxVal) + ggplot2::ylim(minVal, maxVal) + ggplot2::theme_bw()
+    
     return(g1)
 }
 
@@ -63,18 +60,16 @@ plotPO <- function(observed, predicted) {
 #'               -0.25, -0.64, -1.26, -0.07)
 #'  plotPR(y_obs, y_pred)
 plotPR <- function(observed, predicted) {
-
-    if (!check_vectors(observed, predicted))
+    
+    if (!check_vectors(observed, predicted)) 
         return(NULL)
-
+    
     residuals <- observed - predicted
-
-    g1 <- ggplot2::ggplot() +
-        ggplot2::geom_point(ggplot2::aes(x= predicted,y = residuals)) +
-        ggplot2::geom_abline(intercept = 0, slope = 0, col = "grey8", alpha = 0.9, linetype = 5) +
-        ggplot2::labs(x = "predicted", y = "residuals") +
-        ggplot2::theme_bw()
-
+    
+    g1 <- ggplot2::ggplot() + ggplot2::geom_point(ggplot2::aes(x = predicted, y = residuals)) + ggplot2::geom_abline(intercept = 0, 
+        slope = 0, col = "grey8", alpha = 0.9, linetype = 5) + ggplot2::labs(x = "predicted", y = "residuals") + ggplot2::theme_bw()
+    
     return(g1)
-
+    
 }
+

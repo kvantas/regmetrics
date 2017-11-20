@@ -21,11 +21,11 @@ y_obs <- cars$dist
 y_pred <- fitted(lm1)
 
 # compute error metrics
-print(paste('R2 = ', round(r2(y_obs, y_pred),2)))
+print(paste('R2 = ', round(error_metric(y_obs, y_pred, 'R2'),2)))
 #> [1] "R2 =  0.65"
-print(paste('RMSE = ', round(rmse(y_obs, y_pred),2)))
+print(paste('RMSE = ', round(error_metric(y_obs, y_pred, 'RMSE'),2)))
 #> [1] "RMSE =  15.07"
-print(paste('MAE = ', round(mae(y_obs, y_pred),2)))
+print(paste('MAE = ', round(error_metric(y_obs, y_pred, 'MAE'),2)))
 #> [1] "MAE =  11.58"
 
 # Create a plot of observed versus predicted values
