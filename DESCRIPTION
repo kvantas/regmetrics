@@ -3,9 +3,9 @@ Title: Regression Metrics and Plots
 Version: 0.0.1.900
 Authors@R: person("Konstantinos", "Vantas", email = "kon.vantas@gmail.com",
                   role = c("aut", "cre"))
-Description: Collection of regression metrics for measuring performance in 
-             Regression Models and plots for observed, predicted values and
-             residuals from models.
+Description: Collection of error metrics for measuring performance in 
+             regression models and plots for observed, predicted values and
+             residuals.
 Depends: R (>= 3.4.0)
 License: GPL (>= 2)
 LazyData: true

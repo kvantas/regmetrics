@@ -2,7 +2,7 @@
 regmetrics
 ==========
 
-The goal of regmetrics is to provide a set of regression metrics for measuring performance in Regression Models and plots for observed, predicted values and residuals from models.
+The goal of regmetrics is to provide a set of regression metrics for measuring performance in Regression Models and plots for observed, predicted values and residuals.
 
 Example
 -------
