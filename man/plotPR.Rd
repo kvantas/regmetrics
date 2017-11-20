@@ -11,6 +11,9 @@ plotPR(observed, predicted)
 
 \item{predicted}{predicted numeric vector.}
 }
+\value{
+a ggplot class
+}
 \description{
 \code{plotPR} creates an observed versus residuals plot. The use of this plot
 is to help uncover systematic patterns in the model predictions. The

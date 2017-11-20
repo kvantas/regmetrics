@@ -26,19 +26,20 @@ residuals from models.
 This is a basic example:
 
 ```{r example}
+library(regmetrics)
 data("cars")
 
 # create a linear model
-lm1 <- lm(dist~speed, data = cars)
+lm1 <- lm(dist ~ speed, data = cars)
 
 # create vectors of observed and predicted values
 y_obs <- cars$dist
 y_pred <- fitted(lm1)
 
 # compute error metrics
-r2(y_obs, y_pred)
-rmse(y_obs, y_pred)
-mae(y_obs, y_pred)
+print(paste('R2 = ', round(r2(y_obs, y_pred),2)))
+print(paste('RMSE = ', round(rmse(y_obs, y_pred),2)))
+print(paste('MAE = ', round(mae(y_obs, y_pred),2)))
 
 # Create a plot of observed versus predicted values
 plotPO(y_obs, y_pred)

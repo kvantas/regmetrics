@@ -4,23 +4,27 @@
 \alias{plotPO}
 \title{Create a plot of observed versus predicted values}
 \usage{
-plotPO(observed, predicted, add_smooth = FALSE)
+plotPO(observed, predicted)
 }
 \arguments{
 \item{observed}{observed  numeric vector.}
 
 \item{predicted}{predicted numeric vector.}
-
-\item{add_smooth}{add smooth line, boolena.}
 }
 \value{
 a ggplot class
 }
 \description{
-Create a plot of observed versus predicted values
+\code{plotPO} creates an observed versus predicted plot. The use of this plot
+is to check if predictions are uniformly accurate. The diagonal grey reference
+ line indicates where the observed and predicted values would be equal.
 }
 \examples{
- y_obs  <- c(3.0, -0.5, 2.0, 5.0)
- y_pred <- c(3.1, -0.4, 1.8, 4.5)
+ y_obs  <- c(0.22,  0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
+             0.62,  0.99, -0.18, 0.32,  0.34, -0.30,  0.04, -0.87,
+             0.55, -1.30, -1.15, 0.20)
+ y_pred <- c(0.24,  0.78, -0.66,  0.53, 0.70, -0.75, -0.41, -0.43,
+               0.49,  0.79, -1.19,  0.06, 0.75, -0.07,  0.43, -0.42,
+              -0.25, -0.64, -1.26, -0.07)
  plotPO(y_obs, y_pred)
 }

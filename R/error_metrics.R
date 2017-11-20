@@ -20,8 +20,12 @@ TSS <- function(observed) {
 #' @export
 #'
 #' @examples
-#'  y_obs  <- c(3.0, -0.5, 2.0, 5.0)
-#'  y_pred <- c(3.1, -0.4, 1.8, 4.5)
+#'  y_obs  <- c(0.22,  0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
+#'              0.62,  0.99, -0.18, 0.32,  0.34, -0.30,  0.04, -0.87,
+#'              0.55, -1.30, -1.15, 0.20)
+#'  y_pred <- c(0.24,  0.78, -0.66,  0.53, 0.70, -0.75, -0.41, -0.43,
+#'                0.49,  0.79, -1.19,  0.06, 0.75, -0.07,  0.43, -0.42,
+#'               -0.25, -0.64, -1.26, -0.07)
 #'  RSS(y_obs, y_pred)
 RSS <- function(observed, predicted) {
     sum((observed - predicted)^2)
@@ -53,8 +57,12 @@ RSS <- function(observed, predicted) {
 #' @export
 #'
 #' @examples
-#' y_obs  <- c(3.0, -0.5, 2.0, 5.0)
-#' y_pred <- c(3.9, -0.2, 2.8, 4.5)
+#'  y_obs  <- c(0.22,  0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
+#'              0.62,  0.99, -0.18, 0.32,  0.34, -0.30,  0.04, -0.87,
+#'              0.55, -1.30, -1.15, 0.20)
+#'  y_pred <- c(0.24,  0.78, -0.66,  0.53, 0.70, -0.75, -0.41, -0.43,
+#'                0.49,  0.79, -1.19,  0.06, 0.75, -0.07,  0.43, -0.42,
+#'               -0.25, -0.64, -1.26, -0.07)
 #' r2(y_obs, y_pred)
 
 r2 <- function(observed, predicted) {
@@ -86,8 +94,12 @@ r2 <- function(observed, predicted) {
 #' @importFrom stats var
 #'
 #' @examples
-#' y_obs  <- c(3.0, -0.5, 2.0, 5.0)
-#' y_pred <- c(3.9, -0.2, 2.8, 4.5)
+#'  y_obs  <- c(0.22,  0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
+#'              0.62,  0.99, -0.18, 0.32,  0.34, -0.30,  0.04, -0.87,
+#'              0.55, -1.30, -1.15, 0.20)
+#'  y_pred <- c(0.24,  0.78, -0.66,  0.53, 0.70, -0.75, -0.41, -0.43,
+#'                0.49,  0.79, -1.19,  0.06, 0.75, -0.07,  0.43, -0.42,
+#'               -0.25, -0.64, -1.26, -0.07)
 #' expl_var(y_obs, y_pred)
 expl_var <- function(observed, predicted) {
     if (check_vectors(observed, predicted)) {
@@ -115,13 +127,17 @@ expl_var <- function(observed, predicted) {
 #' @export
 #'
 #' @examples
-#'  y_obs  <- c(3.0, -0.5, 2.0, 5.0)
-#'  y_pred <- c(3.9, -0.2, 2.8, 4.5)
+#'  y_obs  <- c(0.22,  0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
+#'              0.62,  0.99, -0.18, 0.32,  0.34, -0.30,  0.04, -0.87,
+#'              0.55, -1.30, -1.15, 0.20)
+#'  y_pred <- c(0.24,  0.78, -0.66,  0.53, 0.70, -0.75, -0.41, -0.43,
+#'                0.49,  0.79, -1.19,  0.06, 0.75, -0.07,  0.43, -0.42,
+#'               -0.25, -0.64, -1.26, -0.07)
 #'  rmse(y_obs, y_pred)
 
 rmse <- function(observed, predicted) {
     if (check_vectors(observed, predicted)) {
-        return(sqrt(mean(RSS(observed, predicted))))
+        return(sqrt(mean((observed - predicted)^2)))
     } else {
         return(NA)
     }
@@ -147,8 +163,12 @@ rmse <- function(observed, predicted) {
 #' @export
 #'
 #' @examples
-#'  y_obs  <- c(3.0, -0.5, 2.0, 5.0)
-#'  y_pred <- c(3.9, -0.2, 2.8, 4.5)
+#'  y_obs  <- c(0.22,  0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
+#'              0.62,  0.99, -0.18, 0.32,  0.34, -0.30,  0.04, -0.87,
+#'              0.55, -1.30, -1.15, 0.20)
+#'  y_pred <- c(0.24,  0.78, -0.66,  0.53, 0.70, -0.75, -0.41, -0.43,
+#'                0.49,  0.79, -1.19,  0.06, 0.75, -0.07,  0.43, -0.42,
+#'               -0.25, -0.64, -1.26, -0.07)
 #'  mae(y_obs, y_pred)
 
 mae <- function(observed, predicted) {
@@ -178,8 +198,12 @@ mae <- function(observed, predicted) {
 #' @export
 #'
 #' @examples
-#'  y_obs  <- c(3.0, -0.5, 2.0, 5.0)
-#'  y_pred <- c(3.9, -0.2, 2.8, 4.5)
+#'  y_obs  <- c(0.22,  0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
+#'              0.62,  0.99, -0.18, 0.32,  0.34, -0.30,  0.04, -0.87,
+#'              0.55, -1.30, -1.15, 0.20)
+#'  y_pred <- c(0.24,  0.78, -0.66,  0.53, 0.70, -0.75, -0.41, -0.43,
+#'                0.49,  0.79, -1.19,  0.06, 0.75, -0.07,  0.43, -0.42,
+#'               -0.25, -0.64, -1.26, -0.07)
 #'  msle(y_obs, y_pred)
 
 msle <- function(observed, predicted) {
@@ -211,8 +235,12 @@ msle <- function(observed, predicted) {
 #' @export
 #'
 #' @examples
-#'  y_obs  <- c(3.0, -0.5, 2.0, 5.0)
-#'  y_pred <- c(3.9, -0.2, 2.8, 4.5)
+#'  y_obs  <- c(0.22,  0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
+#'              0.62,  0.99, -0.18, 0.32,  0.34, -0.30,  0.04, -0.87,
+#'              0.55, -1.30, -1.15, 0.20)
+#'  y_pred <- c(0.24,  0.78, -0.66,  0.53, 0.70, -0.75, -0.41, -0.43,
+#'                0.49,  0.79, -1.19,  0.06, 0.75, -0.07,  0.43, -0.42,
+#'               -0.25, -0.64, -1.26, -0.07)
 #'  mbe(y_obs, y_pred)
 
 mbe <- function(observed, predicted) {
@@ -221,7 +249,7 @@ mbe <- function(observed, predicted) {
     } else {
         return(NA)
     }
-    
+
 }
 
 
@@ -243,8 +271,12 @@ mbe <- function(observed, predicted) {
 #' @export
 #'
 #' @examples
-#'  y_obs  <- c(3.0, -0.5, 2.0, 5.0)
-#'  y_pred <- c(3.9, -0.2, 2.8, 4.5)
+#'  y_obs  <- c(0.22,  0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
+#'              0.62,  0.99, -0.18, 0.32,  0.34, -0.30,  0.04, -0.87,
+#'              0.55, -1.30, -1.15, 0.20)
+#'  y_pred <- c(0.24,  0.78, -0.66,  0.53, 0.70, -0.75, -0.41, -0.43,
+#'                0.49,  0.79, -1.19,  0.06, 0.75, -0.07,  0.43, -0.42,
+#'               -0.25, -0.64, -1.26, -0.07)
 #'  nse(y_obs, y_pred)
 nse <- function(observed, predicted) {
     if (check_vectors(observed, predicted)) {
@@ -252,7 +284,7 @@ nse <- function(observed, predicted) {
     } else {
         return(NA)
     }
-    
+
 }
 
 #' Normalized absolute error
@@ -273,8 +305,12 @@ nse <- function(observed, predicted) {
 #' @export
 #'
 #' @examples
-#'  y_obs  <- c(3.0, -0.5, 2.0, 5.0)
-#'  y_pred <- c(3.9, -0.2, 2.8, 4.5)
+#'  y_obs  <- c(0.22,  0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
+#'              0.62,  0.99, -0.18, 0.32,  0.34, -0.30,  0.04, -0.87,
+#'              0.55, -1.30, -1.15, 0.20)
+#'  y_pred <- c(0.24,  0.78, -0.66,  0.53, 0.70, -0.75, -0.41, -0.43,
+#'                0.49,  0.79, -1.19,  0.06, 0.75, -0.07,  0.43, -0.42,
+#'               -0.25, -0.64, -1.26, -0.07)
 #'  nae(y_obs, y_pred)
 nae <- function(observed, predicted) {
     if (check_vectors(observed, predicted)) {
@@ -282,7 +318,7 @@ nae <- function(observed, predicted) {
     } else {
         return(NA)
     }
-    
+
 }
 
 #' Normalized bias error
@@ -292,7 +328,7 @@ nae <- function(observed, predicted) {
 #'
 #' \deqn{ NAE = \frac{MBE(y_{i}, \hat {y_i})}{MBE(y_{i}, 0)}}
 #' where  \eqn{\hat {y_i}} is the predicted value of \eqn{y_i}.
-# 
+#
 #'
 #' @inheritParams RSS
 #'
@@ -303,8 +339,12 @@ nae <- function(observed, predicted) {
 #' @export
 #'
 #' @examples
-#'  y_obs  <- c(3.0, -0.5, 2.0, 5.0)
-#'  y_pred <- c(3.9, -0.2, 2.8, 4.5)
+#'  y_obs  <- c(0.22,  0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
+#'              0.62,  0.99, -0.18, 0.32,  0.34, -0.30,  0.04, -0.87,
+#'              0.55, -1.30, -1.15, 0.20)
+#'  y_pred <- c(0.24,  0.78, -0.66,  0.53, 0.70, -0.75, -0.41, -0.43,
+#'                0.49,  0.79, -1.19,  0.06, 0.75, -0.07,  0.43, -0.42,
+#'               -0.25, -0.64, -1.26, -0.07)
 #'  nbe(y_obs, y_pred)
 nbe <- function(observed, predicted) {
     if (check_vectors(observed, predicted)) {
@@ -312,5 +352,5 @@ nbe <- function(observed, predicted) {
     } else {
         return(NA)
     }
-    
+
 }
