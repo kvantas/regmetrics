@@ -66,7 +66,7 @@ nbe <- function(observed, predicted) {
 #'
 #' @param observed  observed  numeric vector.
 #' @param predicted predicted numeric vector.
-#' @param metric    one of 'rmse', 'mae', 'r2', 'mbe'.
+#' @param metric    one of 'RMSE', 'MAE', 'R2', 'MBE'.
 #'
 #' @return A numeric vector of length one. A number if
 #' \code{observed} and  \code{predicted} are numeric vectors without NA values
