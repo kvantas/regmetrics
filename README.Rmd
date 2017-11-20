@@ -1,0 +1,48 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# regmetrics
+
+The goal of regmetrics is to provide a set of regression metrics for measuring 
+performance in Regression Models and plots for observed, predicted values and 
+residuals from models.
+
+
+## Example
+
+This is a basic example:
+
+```{r example}
+data("cars")
+
+# create a linear model
+lm1 <- lm(dist~speed, data = cars)
+
+# create vectors of observed and predicted values
+y_obs <- cars$dist
+y_pred <- fitted(lm1)
+
+# compute error metrics
+r2(y_obs, y_pred)
+rmse(y_obs, y_pred)
+mae(y_obs, y_pred)
+
+# Create a plot of observed versus predicted values
+plotPO(y_obs, y_pred)
+
+# Create a plot of predicted versus residuals
+plotPR(y_obs, y_pred)
+```
